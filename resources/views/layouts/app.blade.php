@@ -18,6 +18,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/my.css') }}" rel="stylesheet" type="text/css" >
+
+
 </head>
 <body>
     <div id="app">
@@ -71,10 +74,39 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
-            @yield('content')
+            @auth
+            <div class="container">
+                @if(session()->has('success'))
+                    <div class="alert alert-success">
+                        {{session()->get('success')}}
+                    </div>
+                @endif
+                <div class="row">
+                    <div class="col-md-4">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="#">Post</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="/categories">Categories</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
+            @else
+                @yield('content')
+            @endauth
         </main>
     </div>
+    <!-- extra js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    @yield('scripts')
 </body>
 </html>
