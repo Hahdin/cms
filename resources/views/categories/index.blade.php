@@ -8,26 +8,30 @@
     <div class="card-header">
     </div>
     <div class="card-body">
-        <table class="table">
-            <thead>
-                <th>Name</th>
-                <th></th>
-            <tbody>
-                @foreach($categories as $category)
-                <tr>
-                    <td>{{$category->name}}</td>
-                    <td>
-                        <a href="{{route('categories.edit', $category->id)}}" class="btn btn-info btn-sm">Edit
+        @if($categories->count() >0)
+            <table class="table">
+                <thead>
+                    <th>Name</th>
+                    <th></th>
+                <tbody>
+                    @foreach($categories as $category)
+                    <tr>
+                        <td>{{$category->name}}</td>
+                        <td>
+                            <a href="{{route('categories.edit', $category->id)}}" class="btn btn-info btn-sm">Edit
 
-                        </a>
-                        <button class="btn btn-danger btn-sm" onclick="handleDelete({{$category->id}})">Delete Category</button>
-                    </td>
-                </tr>
+                            </a>
+                            <button class="btn btn-danger btn-sm" onclick="handleDelete({{$category->id}})">Delete Category</button>
+                        </td>
+                    </tr>
 
-                @endforeach
-            </tbody>
-            </thead>
-        </table>
+                    @endforeach
+                </tbody>
+                </thead>
+            </table>
+        @else
+            <h1>No Records</h1>
+        @endif
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <form action="" method="POST" id="deleteCategory">
                 @csrf

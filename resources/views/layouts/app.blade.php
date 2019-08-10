@@ -9,8 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,6 +17,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/my.css') }}" rel="stylesheet" type="text/css" >
+    @yield('css')
+
+
 
 
 </head>
@@ -78,18 +79,23 @@
             @auth
             <div class="container">
                 @if(session()->has('success'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success msa">
                         {{session()->get('success')}}
                     </div>
                 @endif
                 <div class="row">
                     <div class="col-md-4">
                         <ul class="list-group">
-                            <li class="list-group-item">
-                                <a href="#">Post</a>
+                        <li class="list-group-item">
+                                <a href={{route('posts.index')}}>Post</a>
                             </li>
                             <li class="list-group-item">
                                 <a href="/categories">Categories</a>
+                            </li>
+                        </ul>
+                        <ul class="list-group mt-5">
+                            <li class="list-group-item">
+                                <a href={{route('trashed-posts.index')}}>Trashed Post</a>
                             </li>
                         </ul>
                     </div>
@@ -104,9 +110,14 @@
         </main>
     </div>
     <!-- extra js -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+
     @yield('scripts')
 </body>
 </html>

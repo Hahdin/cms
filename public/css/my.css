@@ -10,3 +10,17 @@ div1 {
 body{
     background-color: black;
 }
+
+.msa {
+    box-shadow: 3px 3px 10px white;
+    background-color: forestgreen;
+    color: white;
+}
+
+.is_trashed{
+    background: rgb(243, 226, 226);
+}
+
+.is_not_trashed{
+    background: rgb(192, 255, 197);
+}
