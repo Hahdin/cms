@@ -38,6 +38,7 @@ class PostsController extends Controller
      */
     public function store(CreatePostRequest $request)
     {
+        //dd('store post');
         $image = $request->image->store('posts');
         // $post = $request->all();
         // dd($post, $image);
@@ -74,7 +75,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.create', compact('post'));
     }
 
     /**
@@ -86,7 +87,15 @@ class PostsController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $data = $request->only(['title', 'description', 'content', 'published_at']);
+        if ($request->hasFile('image')){
+            Storage::delete($post->image);
+            $data['image'] =$request->image->store('posts');
+        }
+        $post->update($data);
+        session()->flash('success', 'post updated');
+        return redirect(route('posts.index'));
+        //dd('update post');
     }
     /**
      * Show only trashed posts

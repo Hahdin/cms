@@ -19,11 +19,11 @@
             <tbody>
             @foreach($posts as $post)
                 <tr class=" {{ $post->trashed() ? 'is_trashed' : 'is_not_trashed'}}">
-                    <td><img src="storage/{{$post->image}}" alt="{{asset($post->image)}}" width="100px"></td>
+                    <td><img src="{{asset('storage/'. $post->image)}}" alt="{{asset($post->image)}}" width="100px"></td>
                     <td>{{$post->title}}</td>
                     <td>
                         @if(! $post->trashed())
-                            <a href="#na" class="btn btn-info btn-sm">Edit</a>
+                            <a href="{{route('posts.edit', $post->id)}}" class="btn btn-info btn-sm">Edit</a>
                         @endif
                     </td>
                     <td>
