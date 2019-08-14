@@ -30,7 +30,7 @@
                 </thead>
             </table>
         @else
-            <h1>No Records</h1>
+            <h3>No Category Records</h3>
         @endif
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <form action="" method="POST" id="deleteCategory">

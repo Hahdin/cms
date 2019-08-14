@@ -6,9 +6,9 @@
 </div>
 
 <div class="card card-default">
-    <div class="card-header">Posts</div>
+    <div class="card-header">{{strstr($_SERVER['REQUEST_URI'], 'trashed') ? 'Trashed Posts' : 'Posts'}}</div>
     @if(!$posts->count() > 0)
-    <h1>No Records</h1>
+        <h3>No Post Records</h3>
     @else
     <table class="table">
         <thead>

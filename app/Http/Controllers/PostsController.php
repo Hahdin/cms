@@ -37,12 +37,7 @@ class PostsController extends Controller
      */
     public function store(CreatePostRequest $request)
     {
-        //dd('store post');
         $image = $request->image->store('posts');
-        // $post = $request->all();
-        // dd($post, $image);
-        // $post->image = $image;
-        // $post->published_at = date("Y/m/d");
 
         Post::create([
             'title' => $request->title,
@@ -89,13 +84,11 @@ class PostsController extends Controller
         $data = $request->only(['title', 'description', 'content', 'published_at']);
         if ($request->hasFile('image')){
             $post->deleteImage();
-            //Storage::delete($post->image);
             $data['image'] =$request->image->store('posts');
         }
         $post->update($data);
         session()->flash('success', 'post updated');
         return redirect(route('posts.index'));
-        //dd('update post');
     }
     /**
      * Show only trashed posts
@@ -104,10 +97,7 @@ class PostsController extends Controller
      */
     public function trashed()
     {
-        //dd(Post::withTrashed());
-        //$trashed = Post::withTrashed()->get();
         $trashed = Post::onlyTrashed()->get();
-        //dd('show trashed', $trashed);
         return view('posts.index')->withPosts($trashed);
     }
 
@@ -135,7 +125,6 @@ class PostsController extends Controller
         if($post->trashed())
         {
             $post->deleteImage();
-            //Storage::delete($post->image);
             $redir = '/trashed-posts';
             $post->forceDelete();
         }
