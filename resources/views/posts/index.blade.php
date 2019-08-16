@@ -8,7 +8,7 @@
 <div class="card card-default">
     <div class="card-header">{{strstr($_SERVER['REQUEST_URI'], 'trashed') ? 'Trashed Posts' : 'Posts'}}</div>
     @if(!$posts->count() > 0)
-        <h3>No Post Records</h3>
+    <h3>No Post Records</h3>
     @else
     <table class="table">
         <thead>
@@ -19,7 +19,7 @@
         <tbody>
             @foreach($posts as $post)
             <tr class=" {{ $post->trashed() ? 'is_trashed' : 'is_not_trashed'}}">
-                <td><img src="{{asset('storage/'. $post->image)}}" alt="{{asset($post->image)}}" width="100px"></td>
+                <td><img src="{{asset('storage/'. $post->image)}}" alt="{{asset('storage/'. $post->image)}}" width="100px"></td>
                 <td>{{$post->title}}</td>
                 <td>
                     @if($post->trashed())
